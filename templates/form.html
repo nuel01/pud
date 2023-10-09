@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical Information Form</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        .hidden {
+            display: none;
+        }
+
+        ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color:lightskyblue;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color:lightgray ;
+    }
+
+    .active {
+      
+    }
+    </style>
+</head>
+<body>
+  <ul>
+      <li><a class="active" href="{{ url_for('index')}}">Home</a></li>
+      
+      <li><a href="{{ url_for('about')}}">About</a></li>
+      <li><a href="{{ url_for('feedback')}}">Feedback</a></li>
+    </ul>
+    <div class="container" id="page-1">
+        <h2>Personal Information</h2>
+        <form id="personal-info-form" action="/submit" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" id="name" required><br><br>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" required><br><br>
+
+            <label for='sex'>Sex:</label>
+            <input type="radio" id="male" name="sex" value="Male" required>
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="sex" value="Female" required>
+            <label for="female">Female</label><br><br>
+
+            <label for="icd">ICD-Code:</label>
+            <input type="text" id="icd" required><br><br>
+
+            <label for="wght">Weight:</label>
+            <input type="number" id="wght" required><br><br>
+
+            <button type="submit" >Submit</button>
+            <button type="button" onclick="nextPage()">Next</button>
+        </form>
+    </div>
+
+    <div class="container hidden" id="page-2">
+        <h2>Medications and Conditions</h2>
+        <form id="medication-condition-form" action="/submit" method="POST">
+            <label for="medications">List of Current Medications:</label>
+            <textarea id="medications" required></textarea><br><br>
+
+            <label for="conditions">List of Medical Conditions:</label>
+            <textarea id="conditions" required></textarea><br><br>
+
+            <button type="submit" onclick="submitForm()">Submit</button>
+            <button type="button" onclick="returnToPage1()">Return to 1</button>
+            
+        </form>
+    </div>
+
+    <div class="container hidden" id="output">
+        <h2>Information Submitted:</h2>
+        <p><strong>Name:</strong> <span id="output-name"></span></p>
+        <p><strong>Age:</strong> <span id="output-age"></span></p>
+        <p><strong>Sex:</strong> <span id="output-sex"></span></p>
+        <p><strong>Medications:</strong> <span id="output-medications"></span></p>
+        <p><strong>Conditions:</strong> <span id="output-conditions"></span></p>
+        <button type="button" onclick="returnToPage1()">Return to 1</button>
+        <button type="button" onclick="returnToPage2()">Return to 2</button>
+    </div>
+
+    <script>
+        function nextPage() {
+            document.getElementById("page-2").classList.remove("hidden");
+            document.getElementById("page-1").classList.add("hidden");
+        }
+        const form = document.querySelector("#personal-info-form");
+        const name = document.querySelector("#name");
+        const ageInput = document.querySelector("#age");
+        const WeightInput = document.querySelector("#wght");
+        const sexInput = document.querySelector("#sex");
+        const medicationsInput = document.querySelector('#medications');
+        const conditionsInput = document.querySelector('#conditions');
+
+    /*    // Disable the submit button until all fields are filled
+        //form.querySelector('button').disabled = true;
+
+        // Add an event listener to the form to check if all fields are filled
+        
+
+     */   // Add an event listener to the submit button to send the form data to the Flask server
+        form.addEventListener('#submit', () => {
+
+          // Create a FormData object to store the form data
+            const formData = new FormData(form);
+
+              // Send the FormData object to the Flask server using an Ajax request
+            axios.post('/submit', formData)
+                .then(response => {
+                  // Handle the successful response
+                  console.log('Patient information submitted successfully!');
+                })
+                .catch(error => {
+                  // Handle the error response
+                  console.log(error);
+                });
+        });
+
+
+
+
+        function submitForm() {
+            const form = document.querySelector("#medication-condition-form");
+            const name = document.querySelector("#name");
+            const WeightInput = document.querySelector("#wght");
+            const ageInput = document.getElementById('#age');
+            const sexInput = document.getElementById("#sex");
+            const medicationsInput = document.querySelector('#medications');
+            const conditionsInput = document.querySelector('conditions');
+
+            // Disable the submit button until all fields are filled
+            form.querySelector('#button').disabled = true;
+
+            // Add an event listener to the form to check if all fields are filled
+            form.addEventListener('#input', () => {
+              const allFieldsFilled = name.value && ageInput.value && sexInput.value && medicationsInput.value && conditionsInput.value;
+              form.querySelector('#button').disabled = !allFieldsFilled;
+            });
+
+            // Add an event listener to the submit button to send the form data to the Flask server
+            form.addEventListener('#submit', () => {
+              // Create a FormData object to store the form data
+              const formData = new FormData(form);
+
+              // Send the FormData object to the Flask server using an Ajax request
+              axios.post('/submit', formData)
+                .then(response => {
+                  // Handle the successful response
+                  console.log('Patient information submitted successfully!');
+                })
+                .catch(error => {
+                  // Handle the error response
+                  console.log(error);
+                });
+            });
+        }
+
+
+
+
+
+            /*var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            var wght = document.getElementById("wght").value;
+            var icd = document.getElementById("icd").value;
+            var sex = document.querySelector('input[name="sex"]:checked').value;
+            var medications = document.getElementById("medications").value;
+            var conditions = document.getElementById("conditions").value;
+            console.log("Name:", name);
+
+            // getJSON('/rcmdr', {f_l_name:name, age:age, wght:wght, icd:icd, sex:sex, meds:medications, cond:conditions})
+
+            document.getElementById("output-name").textContent = name;
+            document.getElementById("output-age").textContent = age;
+            document.getElementById("output-sex").textContent = sex;
+            document.getElementById("output-medications").textContent = medications;
+            document.getElementById("output-conditions").textContent = conditions;
+
+            document.getElementById("output").classList.remove("hidden");
+            document.getElementById("medication-condition-form").classList.remove("hidden");
+        }
+*/
+        function returnToPage1() {
+            document.getElementById("page-1").classList.remove("hidden");
+            document.getElementById("page-2").classList.add("hidden");
+            document.getElementById("output").classList.add("hidden");
+          }
+        function returnToPage2() {
+            document.getElementById("page-1").classList.add("hidden");
+            document.getElementById("page-2").classList.remove("hidden");
+            document.getElementById("output").classList.add("hidden");
+        }
+    </script>
+</body>
+</html>

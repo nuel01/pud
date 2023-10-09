@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>form-v1 by Colorlib</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="static/css/opensans-font.css">
+	<link rel="stylesheet" type="text/css" href="static/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="static/css/style.css"/>
+<style>
+
+  .s010 form .inner-form .btn {
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+    }
+
+    .s010 form .inner-form .view_reviews {background-color: #04AA6D;} /* Green */
+    .s010 form .inner-form .view_reviews :hover {background-color: #46a049;}
+
+    .s010 form .inner-form .download {background-color: #2196F3;} /* Blue */
+    .s010 form .inner-form .download :hover {background: #0b7dda;}
+
+    .container {
+            
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #2196f3;
+            background-color: #239b9b85;
+        }
+        .hidden {
+            display: none;
+        }
+
+    ul {
+      list-style-type: none;
+      margin: -10px;
+      padding: 0;
+      overflow: hidden;
+      background-color:;
+    }
+
+    li {
+      float: left;
+    }
+
+    li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
+
+    li a:hover:not(.active) {
+      background-color: ;
+    }
+
+    .active {
+      
+    }
+    </style>
+</head>
+<body>
+  <ul>
+      <li><a class="active" href="{{ url_for('index')}}">Home</a></li>      
+      <li><a href="{{ url_for('about')}}">About</a></li>
+      <li><a href="{{ url_for('feedback')}}">Feedback</a></li>
+    </ul>
+	<div class="page-content">
+		<div class="form-v1-content">
+			<div class="wizard-form">
+		        <form class="form-register" action="/submit" method="POST">
+		        	<div id="form-total">
+		        		<!-- SECTION 1 -->
+			            <h2>
+			            	<p class="step-icon"><span>01</span></p>
+			            	<span class="step-text">Personal Information</span>
+			            </h2>
+			            <section>
+			                <div class="inner">
+			                	<div class="wizard-header">
+									<h3 class="heading">Personal Information</h3>
+									<p>Enter your information and proceed to the next step.  </p>
+								</div>
+								<div class="form-row">
+									<div class="form-holder">
+										<fieldset>
+											<legend>First Name</legend>
+											<input type="text" class="form-control" id="first-name" name="first-name" placeholder="First Name" required>
+										</fieldset>
+									</div>
+									<div class="form-holder">
+										<fieldset>
+											<legend>Last Name</legend>
+											<input type="text" class="form-control" id="last-name" name="last-name" placeholder="Last Name" required>
+										</fieldset>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="form-holder form-holder-2">
+										<fieldset>
+											<legend>Weight (Lbs)</legend>
+											<input type="number" name="wght" id="wght" class="form-control" pattern="" placeholder="" required>
+										</fieldset>
+									</div>
+								</div>
+                <!-- <div class="form-row">
+                  <div class="form-holder form-holder-2">
+                    <fieldset>
+                      <legend>Sex (M/F)</legend>
+                      <input type="text" name="sex" id="sex" class="form-control"  placeholder="" required>
+                    </fieldset>
+                  </div>
+                </div> -->
+								<div class="form-row">
+									<div class="form-holder form-holder-2">
+										<fieldset>
+											<legend>ICD-Code</legend>
+											<input type="text" class="form-control" id="icd" name="icd" placeholder="" required>
+										</fieldset>
+									</div>
+								</div>
+                <div class="form-row">
+                  <div class="form-holder form-holder-2">
+                    <fieldset>
+                      <legend>Age</legend>
+                      <input type="number" name="age" id="age" class="form-control" pattern="" placeholder="" required>
+                    </fieldset>
+                  </div>
+                </div>
+								<div class="form-row form-row-date">
+									<div class="form-holder form-holder-2">
+										<label class="special-label">Sex</label>
+										<select name="sex" id="sex" required>
+											<option value="" disabled selected>Select</option>
+											<option value="female">Female</option>
+											<option value="male">Male</option>
+										</select>
+									<!-- 	<select name="date" id="date">
+											<option value="DD" disabled selected>DD</option>
+											<option value="Feb">Feb</option>
+											<option value="Mar">Mar</option>
+											<option value="Apr">Apr</option>
+											<option value="May">May</option>
+										</select>
+										<select name="year" id="year">
+											<option value="YYYY" disabled selected>YYYY</option>
+											<option value="2017">2017</option>
+											<option value="2016">2016</option>
+											<option value="2015">2015</option>
+											<option value="2014">2014</option>
+											<option value="2013">2013</option>
+										</select>-->
+									</div>
+								</div> 
+								
+							</div>
+			            </section>
+						<!-- SECTION 2 -->
+			            <h2>
+			            	<p class="step-icon"><span>02</span></p>
+			            	<span class="step-text">Medicals</span>
+			            </h2>
+			            <section>
+			                <div class="inner">
+			                	<div class="wizard-header">
+									<h3 class="heading">Medical Details</h3>
+									<p>Enter your information and proceed to the next step.</p>
+								</div>
+								
+               
+                <div class="form-row">
+                  <div class="form-holder form-holder-2">
+                    <fieldset>
+                      <legend>Please list all of the medications that you are currently taking, including over-the-counter medications, herbal supplements, and vitamins</legend>
+                      <input type="text" name="lcm" id="lcm" class="form-control"  placeholder="" required>
+                    </fieldset>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-holder form-holder-2">
+                    <fieldset>
+                      <legend>Please provide a list of the patient's medical conditions, including any allergies or sensitivities.</legend>
+                      <input type="text" name="mc" id="mc" class="form-control"  placeholder="" required>
+                    </fieldset>
+                  </div>
+                </div>                
+                 <div class="form-row">
+                  <div class="form-holder form-holder-2">
+                    <fieldset>
+                      <legend>Any other information</legend>
+                      <input type="text" name="info" id="info" class="form-control" placeholder="" >                      
+                    </fieldset>
+                  </div>
+                </div>
+                <button type="submit" id='submit' onclick="submitForm()" >Submit</button>
+								<!-- <div class="form-row-total">
+									<div class="form-row">
+				                		<div class="form-holder form-holder-2 form-holder-3">
+				                			<input type="radio" class="radio" name="bank-1" id="bank-1" value="bank-1" checked>
+				                			<label class="bank-images label-above bank-1-label" for="bank-1">
+				                				<img src="static/images/form-v1-1.png" alt="bank-1">
+				                			</label>
+											<input type="radio" class="radio" name="bank-2" id="bank-2" value="bank-2">
+											<label class="bank-images label-above bank-2-label" for="bank-2">
+												<img src="static/images/form-v1-2.png" alt="bank-2">
+											</label>
+											<input type="radio" class="radio" name="bank-3" id="bank-3" value="bank-3">
+											<label class="bank-images label-above bank-3-label" for="bank-3">
+												<img src="static/images/form-v1-3.png" alt="bank-3">
+											</label>
+				                		</div>
+				                	</div>
+				                	<div class="form-row">
+				                		<div class="form-holder form-holder-2 form-holder-3">
+				                			<input type="radio" class="radio" name="bank-4" id="bank-4" value="bank-4">
+				                			<label class="bank-images bank-4-label" for="bank-4">
+				                				<img src="static/images/form-v1-4.png" alt="bank-4">
+				                			</label>
+											<input type="radio" class="radio" name="bank-5" id="bank-5" value="bank-5">
+											<label class="bank-images bank-5-label" for="bank-5">
+												<img src="static/images/form-v1-5.png" alt="bank-5">
+											</label>
+											<input type="radio" class="radio" name="bank-6" id="bank-6" value="bank-6">
+											<label class="bank-images bank-6-label" for="bank-6">
+												<img src="static/images/form-v1-6.png" alt="bank-6">
+											</label>
+				                		</div>
+				                	</div>
+								</div> -->
+							</div>
+			           
+
+                  <!-- SECTION 3 
+                  <h2>
+                    <p class="step-icon"><span>03</span></p>
+                    <span class="step-text">Set Financial Goals</span>
+                  </h2>
+                  <section>
+                      <div class="inner">
+                        <div class="wizard-header">
+                  <h3 class="heading">Set Financial Goals</h3>
+                  <p>Please enter your infomation and proceed to the next step so we can build your accounts.</p>
+                </div>
+                <div class="form-row">
+                          <div class="form-holder form-holder-2">
+                            <input type="radio" class="radio" name="radio1" id="plan-1" value="plan-1">
+                            <label class="plan-icon plan-1-label" for="plan-1">
+                              <img src="static/images/form-v1-icon-2.png" alt="pay-1">
+                            </label>
+                            <div class="plan-total">
+                              <span class="plan-title">Specific Plan</span>
+                              <p class="plan-text">Pellentesque nec nam aliquam sem et volutpat consequat mauris nunc congue nisi.</p>
+                            </div>
+                            <input type="radio" class="radio" name="radio1" id="plan-2" value="plan-2">
+                            <label class="plan-icon plan-2-label" for="plan-2">
+                                <img src="static/images/form-v1-icon-2.png" alt="pay-1">
+                            </label>
+                            <div class="plan-total">
+                              <span class="plan-title">Medium Plan</span>
+                              <p class="plan-text">Pellentesque nec nam aliquam sem et volutpat consequat mauris nunc congue nisi.</p>
+                            </div>
+                    <input type="radio" class="radio" name="radio1" id="plan-3" value="plan-3" checked>
+                    <label class="plan-icon plan-3-label" for="plan-3">
+                              <img src="static/images/form-v1-icon-3.png" alt="pay-2">
+                    </label>
+                    <div class="plan-total">
+                              <span class="plan-title">Special Plan</span>
+                              <p class="plan-text">Pellentesque nec nam aliquam sem et volutpat consequat mauris nunc congue nisi.</p>
+                            </div>
+                          </div>
+                        </div>
+              </div>
+                  </section>-->
+			            <!-- SECTION 3 
+			            <h2>
+			            	 <p class="step-icon"><span>></span></p> 
+                    
+			            	<span class="step-text">About</span>
+			            </h2>
+			            <section>
+			                <div class="inner">
+			                	<div class="wizard-header">
+									<h3 class="heading">About</h3>
+									<p>Some information about this drug recommender system for peptic ulcer</p>
+								</div>
+								<div class="form-row">
+			                		<div class="form-holder form-holder-2">
+			                			<input type="radio" class="radio" name="radio1" id="plan-1" value="plan-1">
+			                			<label class="plan-icon plan-1-label" for="plan-1">
+		                					<img src="static/images/form-v1-icon-2.png" alt="pay-1">
+			                			</label>
+			                			<div class="plan-total">
+		                					<span class="plan-title">Specific Plan</span>
+		                					<p class="plan-text">Pellentesque nec nam aliquam sem et volutpat consequat mauris nunc congue nisi.</p>
+		                				</div>
+			                			<input type="radio" class="radio" name="radio1" id="plan-2" value="plan-2">
+			                			<label class="plan-icon plan-2-label" for="plan-2">
+			                					<img src="static/images/form-v1-icon-2.png" alt="pay-1">
+			                			</label>
+			                			<div class="plan-total">
+		                					<span class="plan-title">Medium Plan</span>
+		                					<p class="plan-text">Pellentesque nec nam aliquam sem et volutpat consequat mauris nunc congue nisi.</p>
+		                				</div>
+										<input type="radio" class="radio" name="radio1" id="plan-3" value="plan-3" checked>
+										<label class="plan-icon plan-3-label" for="plan-3">
+		                					<img src="static/images/form-v1-icon-3.png" alt="pay-2">
+										</label>
+										<div class="plan-total">
+		                					<span class="plan-title">Special Plan</span>
+		                					<p class="plan-text">Pellentesque nec nam aliquam sem et volutpat consequat mauris nunc congue nisi.</p>
+		                				</div>
+			                		</div>
+			                	</div>
+							</div>
+			            </section>-->
+		        	</div>
+		        </form>
+			</div>
+		</div>
+	</div>
+  <div class="container hidden" id="output">
+        <h2>Recommendation:</h2>
+        <p><strong>Name:</strong> <span id="output-name"></span></p>
+        <p><strong>Age:</strong> <span id="output-age"></span></p>
+        <p><strong>Sex:</strong> <span id="output-sex"></span></p>
+        <p><strong>Medications:</strong> <span id="output-medications"></span></p>
+        <p><strong>Conditions:</strong> <span id="output-conditions"></span></p>
+        <p><strong>Drug(s) Recommended:</strong> <span id="drug-output"></span></p>
+        
+    </div>
+    <div class="container hidden" id="output_err">
+        <h2>:--------:</h2>
+        
+        <p><strong> </strong> <span id="err-output"></span></p>
+        
+    </div>
+    <div class="container hidden" id="default">
+        <h2>:--------:</h2>
+        
+        <p><strong> </strong> <span ></span></p>
+        
+    </div>
+	<script src="static/js/jquery-3.3.1.min.js"></script>
+	<script src="static/js/jquery.steps.js"></script>
+	<script src="static/js/main.js"></script>
+  <script>
+    
+    $(function(){
+        // input processsing with text box
+        $('#submit').bind('click', function(){
+            //$("#inputtext_err").html('.   Please Wait');
+            //$('#resID').empty();
+            //$("#eval").hide();
+            //document.getElementById("myDiv").style.display = "none";
+            //document.getElementById("loader").style.display = "block";
+            const gender = document.getElementById('sex').value;
+
+            $.getJSON('/submit', {wght:$('input[name="wght"]').val(), icd:$('input[name="icd"]').val(), 
+                                      age:$('input[name="age"]').val(), med:$('input[name="lcm"]').val(),
+                                  cond:$('input[name="mc"]').val(), sex:gender},
+
+                      function(data){
+                        if(data.error_input){
+                            document.getElementById("output").classList.add("hidden");
+                            document.getElementById("output_err").classList.remove("hidden");
+                            $("#err-output").html(data.error_input);}
+
+                        else{
+                          document.getElementById("output_err").classList.add("hidden");
+                          $('#drug-output').html(data.result);
+                        }
+                        
+                        }                                        
+                
+
+               
+        );
+      
+            return false;
+    }); })
+
+    function submitForm() {
+              const name = document.getElementById("first-name").value +(" ")+ document.getElementById("last-name").value;
+              const age = document.getElementById("age").value;
+              const sex = document.getElementById('sex').value;
+              const medications = document.getElementById("lcm").value;
+              const conditions = document.getElementById("mc").value;
+
+              document.getElementById("output-name").textContent = name;
+              document.getElementById("output-age").textContent = age;
+              document.getElementById("output-sex").textContent = sex;
+              document.getElementById("output-medications").textContent = medications;
+              document.getElementById("output-conditions").textContent = conditions;
+
+              document.getElementById("output_err").classList.add("hidden");
+              document.getElementById("output").classList.remove("hidden");
+                  
+        }
+
+  </script>
+
+</body>
+</html>
