@@ -16,6 +16,21 @@ def run(wt, age, sex, icd, cond, med):
     new_d = [{'gender':sex, 'anchor_age':age,'icd_code':icd, 'result_value':wt}]
     new_d = pd.DataFrame(new_d)
     #new_d = new_d.drop(columns=new_d.columns[0])
+    try:
+        
+        for i in new_d['anchor_age'].index:
+            if int(new_d['anchor_age'][i]) <= 65:
+                 new_d['anchor_age'][i] = 0
+            elif int(new_d['anchor_age'][i]) > 65:
+                 new_d['anchor_age'][i] = 1
+            else:
+                err = 'Invalid age value'
+                return '', err
+        distances, indices = knn.kneighbors(new_d)
+    except ValueError:
+        err = "Please check that all fields are filled"
+        return '', err
+    
     if wt == '' or int(wt) < 1:
         err = 'Invalid weight value'
         return '', err
@@ -57,20 +72,6 @@ def run(wt, age, sex, icd, cond, med):
         else:
             err = "ICD_Code is Invalid for Peptic Ulcer"
             return '', err
-    try:
-        
-        for i in new_d['anchor_age'].index:
-            if int(new_d['anchor_age'][i]) <= 65:
-                 new_d['anchor_age'][i] = 0
-            elif int(new_d['anchor_age'][i]) > 65:
-                 new_d['anchor_age'][i] = 1
-            else:
-                err = 'Invalid age value'
-                return '', err
-        distances, indices = knn.kneighbors(new_d)
-    except ValueError:
-        err = "Please check that all fields are filled"
-        return '', err
     
     new_patient_cluster = data.iloc[indices.flatten()]['clusters'].values[0]
     #new_patient_cluster = clusters[indices]
