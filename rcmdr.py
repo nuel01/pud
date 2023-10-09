@@ -16,12 +16,17 @@ def run(wt, age, sex, icd, cond, med):
     new_d = [{'gender':sex, 'anchor_age':age,'icd_code':icd, 'result_value':wt}]
     new_d = pd.DataFrame(new_d)
     #new_d = new_d.drop(columns=new_d.columns[0])
-    
+    if wt == '' or wt < 1:
+        err = 'Invalid weight value'
+        return '', err
     for i in new_d['gender'].index:
         if  new_d['gender'][i] == 'male':        
             new_d['gender'][i] = 1
-        else:
+        elif new_d['gender'][i] == 'female':
             new_d['gender'][i] = 0
+        else:
+            err = 'Invalid sex value'
+            return '', err
     for i in new_d['icd_code'].index:
         if new_d['icd_code'][i].upper() == 'V1271':
             new_d['icd_code'][i] = 11
@@ -59,6 +64,9 @@ def run(wt, age, sex, icd, cond, med):
                  new_d['anchor_age'][i] = 0
             elif int(new_d['anchor_age'][i]) > 65:
                  new_d['anchor_age'][i] = 1
+            else:
+                err = 'Invalid age value'
+                return '', err
         distances, indices = knn.kneighbors(new_d)
     except ValueError:
         err = "Please check that all fields are filled"
