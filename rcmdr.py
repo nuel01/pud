@@ -16,7 +16,7 @@ def run(wt, age, sex, icd, cond, med):
     new_d = [{'gender':sex, 'anchor_age':age,'icd_code':icd, 'result_value':wt}]
     new_d = pd.DataFrame(new_d)
     #new_d = new_d.drop(columns=new_d.columns[0])
-    if wt == '' or wt < 1:
+    if wt == '' or int(wt) < 1:
         err = 'Invalid weight value'
         return '', err
     for i in new_d['gender'].index:
@@ -25,7 +25,7 @@ def run(wt, age, sex, icd, cond, med):
         elif new_d['gender'][i] == 'female':
             new_d['gender'][i] = 0
         else:
-            err = 'Invalid sex value'
+            err = 'Select a sex value'
             return '', err
     for i in new_d['icd_code'].index:
         if new_d['icd_code'][i].upper() == 'V1271':
