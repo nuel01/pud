@@ -23,31 +23,31 @@ def run(wt, age, sex, icd, cond, med):
         else:
             new_d['gender'][i] = 0
     for i in new_d['icd_code'].index:
-        if new_d['icd_code'][i] == 'V1271':
+        if new_d['icd_code'][i].upper() == 'V1271':
             new_d['icd_code'][i] = 11
-        elif new_d['icd_code'][i] == 'Z8711':
+        elif new_d['icd_code'][i].upper() == 'Z8711':
             new_d['icd_code'][i] = 12
-        elif new_d['icd_code'][i] == 'K274':
+        elif new_d['icd_code'][i].upper() == 'K274':
             new_d['icd_code'][i] = 7
-        elif new_d['icd_code'][i] == '53370':
+        elif new_d['icd_code'][i].upper() == '53370':
             new_d['icd_code'][i] = 5
-        elif new_d['icd_code'][i] == '53340':
+        elif new_d['icd_code'][i].upper() == '53340':
             new_d['icd_code'][i] = 3
-        elif new_d['icd_code'][i] == '53350':
+        elif new_d['icd_code'][i].upper() == '53350':
             new_d['icd_code'][i] = 4
-        elif new_d['icd_code'][i] == 'K277':
+        elif new_d['icd_code'][i].upper() == 'K277':
             new_d['icd_code'][i] = 10
-        elif new_d['icd_code'][i] == 'K276':
+        elif new_d['icd_code'][i].upper() == 'K276':
             new_d['icd_code'][i] = 9
-        elif new_d['icd_code'][i] == 'K270':
+        elif new_d['icd_code'][i].upper() == 'K270':
             new_d['icd_code'][i] = 6
-        elif new_d['icd_code'][i] == '53300':
+        elif new_d['icd_code'][i].upper() == '53300':
             new_d['icd_code'][i] = 0
-        elif new_d['icd_code'][i] == 'K275':
+        elif new_d['icd_code'][i].upper() == 'K275':
             new_d['icd_code'][i] = 8
-        elif new_d['icd_code'][i] == '53311':
+        elif new_d['icd_code'][i].upper() == '53311':
             new_d['icd_code'][i] = 2
-        elif new_d['icd_code'][i] == '53310':
+        elif new_d['icd_code'][i].upper() == '53310':
             new_d['icd_code'][i] = 1
         else:
             err = "ICD_Code is Invalid for Peptic Ulcer"
