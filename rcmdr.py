@@ -26,7 +26,7 @@ def run(wt, age, sex, icd, cond, med):
             else:
                 err = 'Invalid age value'
                 return '', err
-        distances, indices = knn.kneighbors(new_d)
+        #distances, indices = knn.kneighbors(new_d)
     except ValueError:
         err = "Please check that all fields are filled"
         return '', err
@@ -72,7 +72,7 @@ def run(wt, age, sex, icd, cond, med):
         else:
             err = "ICD_Code is Invalid for Peptic Ulcer"
             return '', err
-    
+    distances, indices = knn.kneighbors(new_d)
     new_patient_cluster = data.iloc[indices.flatten()]['clusters'].values[0]
     #new_patient_cluster = clusters[indices]
     #print(new_patient_cluster)
