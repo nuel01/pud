@@ -19,7 +19,7 @@ def run(wt, age, sex, icd, cond, med):
     try:
         
         for i in new_d['anchor_age'].index:
-            if int(new_d['anchor_age'][i]) <= 65:
+            if int(new_d['anchor_age'][i]) >= 1 or int(new_d['anchor_age'][i]) <= 65:
                  new_d['anchor_age'][i] = 0
             elif int(new_d['anchor_age'][i]) > 65:
                  new_d['anchor_age'][i] = 1
