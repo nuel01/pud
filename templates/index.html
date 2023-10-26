@@ -105,7 +105,7 @@
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<fieldset>
-											<legend>Weight (Lbs)</legend>
+											<legend>Weight</legend>
 											<input type="number" name="wght" id="wght" class="form-control" pattern="" min="1" max="500" placeholder="" required>
 										</fieldset>
 									</div>
@@ -117,7 +117,7 @@
                       <input type="text" name="sex" id="sex" class="form-control"  placeholder="" required>
                     </fieldset>
                   </div>
-                </div> -->
+                </div> 
 								<div class="form-row">
 									<div class="form-holder form-holder-2">
 										<fieldset>
@@ -125,7 +125,33 @@
 											<input type="text" class="form-control" id="icd" name="icd" placeholder="" required>
 										</fieldset>
 									</div>
-								</div>
+								</div> -->
+			
+			<div class="form-row form-row-date">
+				<div class="form-holder form-holder-2">
+					<label class="special-label">ICD-Code</label>
+					<select name="icd" id="icd" required>
+						<option value="" disabled selected>Select</option>
+						<option value="female">V1271</option>
+						<option value="male">Z8711</option>
+						<option value="female">K270</option>
+						<option value="male">K274</option>
+						<option value="female">K275</option>
+						<option value="male">K276</option>
+						<option value="female">K277</option>
+						<option value="male">53300</option>
+						<option value="female">53310</option>
+						<option value="male">53311</option>
+						<option value="male">53340</option>
+						<option value="female">53350</option>
+						<option value="male">53370</option>
+					</select>
+				</div>
+			</div> 
+
+
+
+						
                 <div class="form-row">
                   <div class="form-holder form-holder-2">
                     <fieldset>
@@ -174,7 +200,6 @@
 									<p>Enter your information and proceed to the next step.</p>
 								</div>
 								
-               
                 <div class="form-row">
                   <div class="form-holder form-holder-2">
                     <fieldset>
@@ -183,14 +208,25 @@
                     </fieldset>
                   </div>
                 </div>
+						
                 <div class="form-row">
                   <div class="form-holder form-holder-2">
                     <fieldset>
                       <legend>Please provide a list of the patient's medical conditions, including any allergies or sensitivities.</legend>
-                      <input type="text" name="mc" id="mc" class="form-control"  placeholder="" required>
+                      <input type="text" name="mc" id="mc" class="form-control"  placeholder="Separate each with a comma (,)" required>
+                    </fieldset>
+                  </div>
+                </div> 
+						
+		<div class="form-row">
+                  <div class="form-holder form-holder-2">
+                    <fieldset>
+                      <legend>Please provide a list any allergies or sensitivities.</legend>
+                      <input type="text" name="mc" id="mc" class="form-control"  placeholder="Separate each with a comma (,)" required>
                     </fieldset>
                   </div>
                 </div>                
+						
                  <div class="form-row">
                   <div class="form-holder form-holder-2">
                     <fieldset>
@@ -361,8 +397,9 @@
             //document.getElementById("myDiv").style.display = "none";
             //document.getElementById("loader").style.display = "block";
             const gender = document.getElementById('sex').value;
+	const icd = document.getElementById('icd').value;
 
-            $.getJSON('/submit', {wght:$('input[name="wght"]').val(), icd:$('input[name="icd"]').val(), 
+            $.getJSON('/submit', {wght:$('input[name="wght"]').val(), icd:icd, 
                                       age:$('input[name="age"]').val(), med:$('input[name="lcm"]').val(),
                                   cond:$('input[name="mc"]').val(), sex:gender},
 
